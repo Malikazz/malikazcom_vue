@@ -1,3 +1,0 @@
-# malikazcom
-
-Personal Website
