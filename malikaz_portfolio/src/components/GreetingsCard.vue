@@ -9,7 +9,7 @@ defineProps<{
     <p>Hi, my name is</p>
     <h1 class="green">Paul Malcolm.</h1>
     <h3>
-      I am a for ever learner who enjoys solving problems with computers.
+      I am a forever learner who enjoys solving problems with computers.
     </h3>
   </div>
 </template>

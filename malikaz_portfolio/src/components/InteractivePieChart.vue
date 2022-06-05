@@ -1,34 +1,53 @@
 <template>
-  <Doughnut
-    :chart-options="chartOptions"
-    :chart-data="chartData"
-    :chart-id="chartId"
-    :dataset-id-key="datasetIdKey"
-    :plugins="plugins"
-    :css-classes="cssClasses"
-    :styles="styles"
-    :width="width"
-    :height="height"
-  />
+  <div>
+    <button v-if="isInner" @click.stop="back">&#11164;</button>
+    <Doughnut
+      ref="bar"
+      v-if="!isInner"
+      @click="expandData"
+      :chart-options="this.chartOptions"
+      :chart-data="this.chartData"
+      :height="this.height"
+      :width="this.width"
+    />
+    <Doughnut
+      ref="bar"
+      v-if="isInner"
+      @click="expandData"
+      :chart-options="this.chartOptions"
+      :chart-data="this.chartData"
+    />
+  </div>
 </template>
 
 <script>
-import { Doughnut } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement,CategoryScale, LinearScale } from 'chart.js'
+import { Doughnut } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
 
-ChartJS.register(Title, Tooltip, Legend, CategoryScale, LinearScale, ArcElement)
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  ArcElement
+);
 
 export default {
-  name: 'doughnut',
+  name: "doughnut",
   components: { Doughnut },
   props: {
-    chartId: {
-      type: String,
-      default: 'doughnut'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
+    data: {
+      type: Object,
+      default: {},
     },
     width: {
       type: Number,
@@ -36,39 +55,52 @@ export default {
     },
     height: {
       type: Number,
-      default: 400
-    },
-    cssClasses: {
-      default: '',
-      type: String
-    },
-    styles: {
-      type: Object,
-      default: () => {}
-    },
-    plugins: {
-      type: Object,
-      default: () => {}
+      default: 600
     }
   },
   data() {
     return {
-      chartData: {
-        labels: [ 'Python', 'C#', 'Javascript', 'Dart','Rust','SQL', 'Java' ],
-        datasets: [ { data: [2240, 1040, 860, 600, 100, 1200, 150], 
-        backgroundColor: ['#873e23', '#154c79', '#ff5133', ' #02843d','#ffd233' ,'#33ffb6', '#000000' ],
-        },]
-      },
-      chartOptions: {
-        responsive: true,
-        plugins:{
-            title:{
-                display:true,
-                text:"Title"
-            },
-        },
-      }
+      isInner: false,
+      index: -1,
     }
-  }
-}
+  },
+  computed:{
+    chartData: function (){
+      let data = {};
+      if(this.isInner){
+        data = this.data.innerCharts[this.index].data;
+      } else {
+        data = this.data.outterChart.data;
+      }
+      return data;
+    },
+    chartOptions: function (){
+      let data = {};
+      if(this.isInner){
+        data = this.data.innerCharts[this.index].options;
+      } else {
+        data = this.data.outterChart.options;
+      }
+      return data;
+    },
+  },
+  methods: {
+    getClickedIndex: function (event) {
+      return this.$refs.bar.chart.getElementsAtEventForMode(
+        event,
+        "nearest",
+        { intersect: true },
+        false
+      )[0].index;
+    },
+    expandData: function (event) {
+      this.index = this.getClickedIndex(event);
+      this.isInner = true;
+    },
+    back: function (event){
+      this.isInner = false;
+      this.index = -1;
+    }
+  },
+};
 </script>
