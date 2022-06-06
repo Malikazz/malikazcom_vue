@@ -1,10 +1,10 @@
-import type { InteractiveChartData } from '../types/InteractiveChartData.js';
+import type { InteractiveChartData } from '@/types/InteractiveChartData.js';
 
 export const TechData: InteractiveChartData = {
   name: "Technologies",
   outterChart: {
     data: {
-      labels: ["Git", "SSMS", "PGAdmin", "Linux", "Azure", "AWS", "Java"],
+      labels: ["Git", "SSMS", "PGAdmin", "Linux", "Azure", "AWS", "VsCode", "VisualStudio"],
       datasets: [
         {
           data: [2240, 1040, 860, 600, 100, 1200, 150],

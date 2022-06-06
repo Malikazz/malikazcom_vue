@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-if="isInner" @click.stop="back">&#11164;</button>
+    <button v-if="isInner" @click.stop="back">&#11164; Back</button>
     <Doughnut
       ref="bar"
       v-if="!isInner"
@@ -42,7 +42,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "doughnut",
+  name: "ExpandableDoughnutChart",
   components: { Doughnut },
   props: {
     data: {

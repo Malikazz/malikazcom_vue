@@ -1,4 +1,4 @@
-import type { InteractiveChartData } from '../types/InteractiveChartData.js';
+import type { InteractiveChartData } from '@/types/InteractiveChartData.js';
 
 export const LanguageData: InteractiveChartData = {
   name: "Languages",
