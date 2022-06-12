@@ -216,7 +216,7 @@ export const LanguageData: InteractiveChartData = {
     },
     {
       data: {
-        labels: ["MsSQL", "Postgresql", "MySql"],
+        labels: ["MsSQL", "PostgreSQL", "MySQL"],
         datasets: [
           {
             data: [700,450, 50],

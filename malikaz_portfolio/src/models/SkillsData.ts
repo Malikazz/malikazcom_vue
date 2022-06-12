@@ -1,21 +1,18 @@
 import type { InteractiveChartData } from '@/types/InteractiveChartData.js';
 
-export const TechData: InteractiveChartData = {
-  name: "Technologies",
+export const SkillsData: InteractiveChartData = {
+  name: "Languages",
   outterChart: {
     data: {
-      labels: ["Git", "SSMS", "PGAdmin", "Linux", "Azure", "AWS", "VSCode"],
+      labels: ["Programing", "DevOps", "Hacking", "Presenting"],
       datasets: [
         {
-          data: [500, 1040, 300, 5000, 100, 250, 5000],
+          data: [2240, 1040, 860, 600],
           backgroundColor: [
-            "#873e23",
             "#154c79",
             "#ff5133",
             "#02843d",
-            "#ffd233",
-            "#33ffb6",
-            "#000000"
+            "#873e23",
           ]
         }
       ]
@@ -26,7 +23,7 @@ export const TechData: InteractiveChartData = {
       plugins: {
         title: {
           display: true,
-          text: "Technologies",
+          text: "Skills",
           font:{
             size: 36
           }
@@ -56,7 +53,7 @@ export const TechData: InteractiveChartData = {
           }
         ]
       },
-      options: {
+      options: { 
         type: Object,
         responsive: true,
         plugins: {
